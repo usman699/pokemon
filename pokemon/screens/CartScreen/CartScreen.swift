@@ -31,7 +31,7 @@ struct CartScreen: View {
                 
             }
            
-            .navigationTitle("Your Cart") // Custom title for the Cart screen
+            .navigationTitle("My Carts is ") // Custom title for the Cart screen
             .navigationBarTitleDisplayMode(.inline)
         }
     }
