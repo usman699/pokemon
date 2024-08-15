@@ -25,7 +25,7 @@ struct Datum: Codable, Identifiable {
     let nationalPokedexNumbers: [Int]?
   //  let legalities: String?
     let images: DataImages?
-  //  let tcgplayer: String?
+    let tcgplayer: Tcgplayer?
   //  let cardmarket: String?
 }
 
@@ -79,19 +79,19 @@ struct Resistance: Codable {
 struct Tcgplayer: Codable {
     let url: String?
     let updatedAt: String?
-    let prices: String?
+    let prices: Prices?
 }
 
 // MARK: - Prices
 struct Prices: Codable {
- //   let holofoil: String?
+    let holofoil: Holofoil?
  //let reverseHolofoil: Holofoil
 }
 
 // MARK: - Holofoil
 struct Holofoil: Codable {
     let low, mid, high, market: Double
-    let directLow: JSONNull?
+   // let directLow: String?
 }
 
 // MARK: - Encode/decode helpers

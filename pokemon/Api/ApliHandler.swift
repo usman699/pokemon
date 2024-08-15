@@ -6,6 +6,14 @@
 //
 
 import Foundation
-//class ApiHandler{
-//    
-//}
+
+class ApiHandler{
+    func fetchdata(url:URL ,completion:@escaping(Result<Data , NetworkError>) -> Void){
+        URLSession.shared.dataTask(with: url) { data ,response ,error in
+            guard let data = data , error == nil else{
+                return completion(.failure(.invalidUrl))
+            }
+            completion(.success(data))
+        }.resume()
+    }
+}

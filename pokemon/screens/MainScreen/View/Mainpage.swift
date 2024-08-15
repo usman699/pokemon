@@ -22,7 +22,7 @@ struct Mainpage: View {
         TabView {
            MainScreen()
                 .tabItem {
-                    Label("Home", systemImage: "person.3")
+                    Label("Home", systemImage: "house")
                 }
             favrioteScreen()
                  .tabItem {

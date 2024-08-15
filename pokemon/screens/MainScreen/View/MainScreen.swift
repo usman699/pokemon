@@ -9,15 +9,17 @@ import SwiftUI
 
 struct MainScreen: View {
     @StateObject private var viewModel = MainViewmodel()
-  
+
     @Environment(\.colorScheme) var colorScheme
         private let adaptiveColumn = [
             GridItem(.adaptive(minimum: 150)),
             GridItem(.adaptive(minimum: 150))
           
         ]
+ 
     @State private var navigateToDetail: Bool = false
-    
+    @State private var searchText = ""
+  
     var body: some View {
         
         NavigationStack {
@@ -26,27 +28,42 @@ struct MainScreen: View {
                 Text("Which Pokemon is your Favorite?")
                     .font(.title)
 
-                customTexfield()
-
-                if viewModel.isLoading {
-                    ProgressView()
-                } else if let errorMessage = viewModel.errorMessage {
+              //  customTexfield()
+            
+                
+                  if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
                 } else {
                     ScrollView {
                         
                         LazyVGrid(columns: adaptiveColumn, spacing: 20) {
-                            ForEach(viewModel.data) { item in
-                          
-                                GridCardItems(item: item)
+                            ForEach(searchResults) { item in
+                               
+                                    GridCardItems(item: item)
+                                    .padding(20)
+                            
                             }
                         }
+                        .searchable(
+                        text: $searchText,
+                        prompt: Text("Search Pokémon").font(.headline).foregroundColor(.gray)
+                          
+                        )
+                        
+                        
                         .padding(.top, 5)
                     }
                 }
             }
-
+             .overlay(
+                        Group {
+                            if viewModel.isLoading {
+                                ProgressView()
+                                    .zIndex(1)
+                            }
+                        }
+                    )
             
             .navigationTitle("Pokemon")
             .toolbar {
@@ -88,14 +105,30 @@ struct MainScreen: View {
                         }
             
             }
-        .onAppear {
+        .onAppear() {
+                        Task {
+                            await MainActor.run {
+                                viewModel.fetchingdata()
+                                }
+                            }
+                        }
+                    }
+    var searchResults: [Datum] {
+          if searchText.isEmpty {
             
-            viewModel.fetchingdata()
-              }
-    
+              return viewModel.data
+              
+              
+          } else {
+              
+           
+              return viewModel.data.filter { $0.name?.lowercased().contains(searchText.lowercased()) ?? false }
+              
+          }
+      }
         }
     
-    }
+    
 #Preview {
     Mainpage()
 }

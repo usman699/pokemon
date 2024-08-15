@@ -30,6 +30,8 @@
 		053692DC2C6622CD0006C51D /* FavoritesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053692DB2C6622CD0006C51D /* FavoritesCard.swift */; };
 		053692DE2C6631FC0006C51D /* CartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053692DD2C6631FC0006C51D /* CartScreen.swift */; };
 		053692E12C6639010006C51D /* CartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053692E02C6639010006C51D /* CartCard.swift */; };
+		05B4C7432C6DDD1A00F37AD2 /* resonseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B4C7422C6DDD1A00F37AD2 /* resonseHandler.swift */; };
+		05B4C7452C6DE1D700F37AD2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B4C7442C6DE1D700F37AD2 /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		053692DB2C6622CD0006C51D /* FavoritesCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCard.swift; sourceTree = "<group>"; };
 		053692DD2C6631FC0006C51D /* CartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartScreen.swift; sourceTree = "<group>"; };
 		053692E02C6639010006C51D /* CartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCard.swift; sourceTree = "<group>"; };
+		05B4C7422C6DDD1A00F37AD2 /* resonseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resonseHandler.swift; sourceTree = "<group>"; };
+		05B4C7442C6DE1D700F37AD2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				050E2C522C64AE9E007FAA3F /* Color.swift */,
+				05B4C7442C6DE1D700F37AD2 /* Images.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			children = (
 				051B6B212C6A05C100D7FAB1 /* NetworkManager.swift */,
 				051F05822C6B47F9001137DA /* ApliHandler.swift */,
+				05B4C7422C6DDD1A00F37AD2 /* resonseHandler.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05B4C7432C6DDD1A00F37AD2 /* resonseHandler.swift in Sources */,
 				050E2C472C649F91007FAA3F /* loginpage.swift in Sources */,
 				050E2C402C648B4D007FAA3F /* SplashScreen.swift in Sources */,
 				051B6B262C6A1C8800D7FAB1 /* cardModel.swift in Sources */,
@@ -425,6 +432,7 @@
 				050E2C122C648810007FAA3F /* pokemonApp.swift in Sources */,
 				053692DE2C6631FC0006C51D /* CartScreen.swift in Sources */,
 				053692DC2C6622CD0006C51D /* FavoritesCard.swift in Sources */,
+				05B4C7452C6DE1D700F37AD2 /* Images.swift in Sources */,
 				053692DA2C6613C30006C51D /* favrioteScreen.swift in Sources */,
 				051B6B2A2C6A1EF400D7FAB1 /* MainViewmodel.swift in Sources */,
 			);

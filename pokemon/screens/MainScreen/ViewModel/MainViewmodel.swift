@@ -8,25 +8,28 @@
 import Foundation
 import Observation
 class MainViewmodel:ObservableObject{
-    
+
     @Published var data: [Datum] = []
+    
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     
     var mainserves = MainviewServices()
     func fetchingdata() {
         print("function called")
-   
+   isLoading = true
         mainserves.getcarddata(competion: {result in
             switch result {
                 
             case .success(let datas):
                 print("function called in success")
-                DispatchQueue.main.sync {
-                
-                    self.data = datas.data
-                }
-               
+                Task {
+                                    await MainActor.run {
+                                        self.data = datas.data
+                                    }
+                                }
+                self.isLoading = false
+             
             case .failure(let error):
                 print("function called in success")
                 switch (error){
@@ -39,6 +42,7 @@ class MainViewmodel:ObservableObject{
                     print("invalid request")
                
                 case .decoding:
+                    self.isLoading = false
                     print("deconding")
                 case .serverError(statusCode: let statusCode):
                     print("\(statusCode)")
