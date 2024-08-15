@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MainScreen: View {
-
-    private var data  = Array(1...20)
+    @StateObject private var viewModel = MainViewmodel()
+  
     @Environment(\.colorScheme) var colorScheme
         private let adaptiveColumn = [
             GridItem(.adaptive(minimum: 150)),
@@ -17,29 +17,37 @@ struct MainScreen: View {
           
         ]
     @State private var navigateToDetail: Bool = false
+    
     var body: some View {
+        
         NavigationStack {
       
-            VStack (spacing:15){
-                Text("Which Pokemon is your Favroite?")
+            VStack(spacing: 15) {
+                Text("Which Pokemon is your Favorite?")
                     .font(.title)
-                customTexfield()
-                
 
-                ScrollView {
-                    VStack {
+                customTexfield()
+
+                if viewModel.isLoading {
+                    ProgressView()
+                } else if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                } else {
+                    ScrollView {
+                        
                         LazyVGrid(columns: adaptiveColumn, spacing: 20) {
-                            ForEach(data, id: \.self) { item in
-                               GridCardItems()
+                            ForEach(viewModel.data) { item in
+                          
+                                GridCardItems(item: item)
                             }
                         }
-                        .padding(.top, 5) // Add padding to the top of the VStack
+                        .padding(.top, 5)
                     }
                 }
-           
-                
-                }
-       
+            }
+
+            
             .navigationTitle("Pokemon")
             .toolbar {
                             // Primary action toolbar item
@@ -51,7 +59,7 @@ struct MainScreen: View {
                                                .frame(width: 30, height: 30)
                                                .padding()
                                        }
-                        
+                        .navigationBarHidden(false)
                         .frame(width: 40)
                         .padding(5)
                         .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
@@ -80,9 +88,13 @@ struct MainScreen: View {
                         }
             
             }
-       
-
+        .onAppear {
+            
+            viewModel.fetchingdata()
+              }
+    
         }
+    
     }
 #Preview {
     Mainpage()

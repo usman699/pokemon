@@ -19,6 +19,11 @@
 		050E2C502C64A3D0007FAA3F /* searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E2C4F2C64A3D0007FAA3F /* searchbar.swift */; };
 		050E2C532C64AE9E007FAA3F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E2C522C64AE9E007FAA3F /* Color.swift */; };
 		050E2C552C64EE03007FAA3F /* CardGridview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E2C542C64EE03007FAA3F /* CardGridview.swift */; };
+		051B6B222C6A05C100D7FAB1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B6B212C6A05C100D7FAB1 /* NetworkManager.swift */; };
+		051B6B262C6A1C8800D7FAB1 /* cardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B6B252C6A1C8800D7FAB1 /* cardModel.swift */; };
+		051B6B2A2C6A1EF400D7FAB1 /* MainViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B6B292C6A1EF400D7FAB1 /* MainViewmodel.swift */; };
+		051F05832C6B47F9001137DA /* ApliHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F05822C6B47F9001137DA /* ApliHandler.swift */; };
+		051F05892C6B4D3F001137DA /* mainservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F05882C6B4D3F001137DA /* mainservices.swift */; };
 		053692D22C65ED560006C51D /* Mainpage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053692D12C65ED560006C51D /* Mainpage.swift */; };
 		053692D72C66100A0006C51D /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053692D62C66100A0006C51D /* MainScreen.swift */; };
 		053692DA2C6613C30006C51D /* favrioteScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053692D92C6613C30006C51D /* favrioteScreen.swift */; };
@@ -60,6 +65,11 @@
 		050E2C4F2C64A3D0007FAA3F /* searchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchbar.swift; sourceTree = "<group>"; };
 		050E2C522C64AE9E007FAA3F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		050E2C542C64EE03007FAA3F /* CardGridview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGridview.swift; sourceTree = "<group>"; };
+		051B6B212C6A05C100D7FAB1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		051B6B252C6A1C8800D7FAB1 /* cardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardModel.swift; sourceTree = "<group>"; };
+		051B6B292C6A1EF400D7FAB1 /* MainViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewmodel.swift; sourceTree = "<group>"; };
+		051F05822C6B47F9001137DA /* ApliHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApliHandler.swift; sourceTree = "<group>"; };
+		051F05882C6B4D3F001137DA /* mainservices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainservices.swift; sourceTree = "<group>"; };
 		053692D12C65ED560006C51D /* Mainpage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mainpage.swift; sourceTree = "<group>"; };
 		053692D62C66100A0006C51D /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		053692D92C6613C30006C51D /* favrioteScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = favrioteScreen.swift; sourceTree = "<group>"; };
@@ -116,9 +126,10 @@
 		050E2C102C648810007FAA3F /* pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				051B6B242C6A1C5E00D7FAB1 /* Screens */,
+				051B6B202C6A05AD00D7FAB1 /* Api */,
 				050E2C512C64AE91007FAA3F /* Utils */,
 				050E2C4C2C64A0B9007FAA3F /* componets */,
-				050E2C3B2C648A20007FAA3F /* screens */,
 				050E2C112C648810007FAA3F /* pokemonApp.swift */,
 				050E2C132C648810007FAA3F /* ContentView.swift */,
 				050E2C152C648811007FAA3F /* Assets.xcassets */,
@@ -152,18 +163,6 @@
 			path = pokemonUITests;
 			sourceTree = "<group>";
 		};
-		050E2C3B2C648A20007FAA3F /* screens */ = {
-			isa = PBXGroup;
-			children = (
-				053692DF2C6632010006C51D /* CartScreen */,
-				053692D82C6613A70006C51D /* Favroite */,
-				050E2C492C649FC0007FAA3F /* MainScreen */,
-				050E2C412C649F53007FAA3F /* loginScreen */,
-				050E2C3E2C648A36007FAA3F /* splashscreen */,
-			);
-			path = screens;
-			sourceTree = "<group>";
-		};
 		050E2C3E2C648A36007FAA3F /* splashscreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,8 +182,10 @@
 		050E2C492C649FC0007FAA3F /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				053692D12C65ED560006C51D /* Mainpage.swift */,
-				053692D62C66100A0006C51D /* MainScreen.swift */,
+				051F05842C6B4897001137DA /* Services */,
+				051F05872C6B497C001137DA /* Model */,
+				051F05862C6B4942001137DA /* ViewModel */,
+				051F05852C6B4936001137DA /* View */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -206,6 +207,60 @@
 				050E2C522C64AE9E007FAA3F /* Color.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		051B6B202C6A05AD00D7FAB1 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				051B6B212C6A05C100D7FAB1 /* NetworkManager.swift */,
+				051F05822C6B47F9001137DA /* ApliHandler.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		051B6B242C6A1C5E00D7FAB1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				053692DF2C6632010006C51D /* CartScreen */,
+				053692D82C6613A70006C51D /* Favroite */,
+				050E2C492C649FC0007FAA3F /* MainScreen */,
+				050E2C412C649F53007FAA3F /* loginScreen */,
+				050E2C3E2C648A36007FAA3F /* splashscreen */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		051F05842C6B4897001137DA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				051F05882C6B4D3F001137DA /* mainservices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		051F05852C6B4936001137DA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				053692D12C65ED560006C51D /* Mainpage.swift */,
+				053692D62C66100A0006C51D /* MainScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		051F05862C6B4942001137DA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				051B6B292C6A1EF400D7FAB1 /* MainViewmodel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		051F05872C6B497C001137DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				051B6B252C6A1C8800D7FAB1 /* cardModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		053692D82C6613A70006C51D /* Favroite */ = {
@@ -356,17 +411,22 @@
 			files = (
 				050E2C472C649F91007FAA3F /* loginpage.swift in Sources */,
 				050E2C402C648B4D007FAA3F /* SplashScreen.swift in Sources */,
+				051B6B262C6A1C8800D7FAB1 /* cardModel.swift in Sources */,
 				053692E12C6639010006C51D /* CartCard.swift in Sources */,
 				053692D22C65ED560006C51D /* Mainpage.swift in Sources */,
 				050E2C532C64AE9E007FAA3F /* Color.swift in Sources */,
 				050E2C142C648810007FAA3F /* ContentView.swift in Sources */,
+				051F05892C6B4D3F001137DA /* mainservices.swift in Sources */,
 				050E2C502C64A3D0007FAA3F /* searchbar.swift in Sources */,
 				053692D72C66100A0006C51D /* MainScreen.swift in Sources */,
+				051F05832C6B47F9001137DA /* ApliHandler.swift in Sources */,
 				050E2C552C64EE03007FAA3F /* CardGridview.swift in Sources */,
+				051B6B222C6A05C100D7FAB1 /* NetworkManager.swift in Sources */,
 				050E2C122C648810007FAA3F /* pokemonApp.swift in Sources */,
 				053692DE2C6631FC0006C51D /* CartScreen.swift in Sources */,
 				053692DC2C6622CD0006C51D /* FavoritesCard.swift in Sources */,
 				053692DA2C6613C30006C51D /* favrioteScreen.swift in Sources */,
+				051B6B2A2C6A1EF400D7FAB1 /* MainViewmodel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
