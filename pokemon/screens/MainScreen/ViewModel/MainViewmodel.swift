@@ -1,66 +1,53 @@
-//
-//  MainViewmodel.swift
-//  pokemon
-//
-//  Created by Spark M1 on 12/08/2024.
-//
-
 import Foundation
-import Observation
-class MainViewmodel:ObservableObject{
+import SwiftUI
 
+@MainActor
+class MainViewmodel: ObservableObject {
     @Published var data: [Datum] = []
-    
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     
-    var mainserves = MainviewServices()
+    private var mainserves = MainviewServices()
+    
     func fetchingdata() {
         print("function called")
-   isLoading = true
-        mainserves.getcarddata(competion: {result in
-            switch result {
-                
-            case .success(let datas):
-                print("function called in success")
-                Task {
-                                    await MainActor.run {
-                                        self.data = datas.data
-                                    }
-                                }
-                self.isLoading = false
-             
-            case .failure(let error):
-                print("function called in success")
-                switch (error){
-                    
-                case .invalidResponse:
-                    print("invalid response")
-                case .invalidUrl:
-                    print("invalid data")
-                case .requestFailed:
-                    print("invalid request")
-               
-                case .decoding:
+        isLoading = true
+        
+        mainserves.getcarddata { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let datas):
+                    print("function called in success")
+                    self.data = datas.data
                     self.isLoading = false
-                    print("deconding")
-                case .serverError(statusCode: let statusCode):
-                    print("\(statusCode)")
-                case .customError(let error):
-                    print("\(error)")
-                case .outofstack:
-                    print("out of stack")
-                case .notfound:
-                    print("out of stack")
-                case .tokken:
-                    print("")
+                    
+                case .failure(let error):
+                    print("function called in failure")
+                    self.isLoading = false
+                    
+                    switch error {
+                    case .invalidResponse:
+                        self.errorMessage = "Invalid response from server."
+                    case .invalidUrl:
+                        self.errorMessage = "Invalid URL."
+                    case .requestFailed:
+                        self.errorMessage = "Request failed."
+                    case .decoding:
+                        self.errorMessage = "Failed to decode data."
+                    case .serverError(statusCode: let statusCode):
+                        self.errorMessage = "Server error with status code \(statusCode)."
+                    case .customError(let error):
+                        self.errorMessage = "Custom error: \(error)"
+                    case .outofstack:
+                        self.errorMessage = "Stack overflow."
+                    case .notfound:
+                        self.errorMessage = "Resource not found."
+                    case .tokken:
+                        self.errorMessage = "Token error."
+                    }
                 }
             }
-            
-        })
-    }}
-        
-        
-        
-        
-        
+        }
+    }
+}
+

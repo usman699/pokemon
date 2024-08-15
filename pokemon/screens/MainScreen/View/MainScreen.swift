@@ -37,19 +37,15 @@ struct MainScreen: View {
                 } else {
                     ScrollView {
                         
-                        LazyVGrid(columns: adaptiveColumn, spacing: 20) {
+                        LazyVGrid(columns: adaptiveColumn, spacing:  0) {
                             ForEach(searchResults) { item in
                                
                                     GridCardItems(item: item)
-                                    .padding(20)
+                                    .padding(10)
                             
                             }
                         }
-                        .searchable(
-                        text: $searchText,
-                        prompt: Text("Search Pokémon").font(.headline).foregroundColor(.gray)
-                          
-                        )
+                        .searchable(text: $searchText, prompt: Text("Search Pokémon"))
                         
                         
                         .padding(.top, 5)
@@ -65,7 +61,7 @@ struct MainScreen: View {
                         }
                     )
             
-            .navigationTitle("Pokemon")
+             .navigationTitle("Pokemon")
             .toolbar {
                             // Primary action toolbar item
                 ToolbarItem(placement: .primaryAction) {

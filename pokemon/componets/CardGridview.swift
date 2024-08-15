@@ -8,33 +8,40 @@ struct GridCardItems: View {
     var body: some View {
         let priceString = String(format: "%.2f", self.item.tcgplayer?.prices?.holofoil?.high ?? 0)
         
-        VStack (alignment:.leading){
-            if let imageUrlString = item.images?.large, let imageUrl = URL(string: imageUrlString) {
-                AsyncImage(url: imageUrl) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView() // Placeholder while the image is loading
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 170)
-                            .cornerRadius(6)
-                    case .failure:
-                        ProgressView()
-                    @unknown default:
-                        EmptyView()
+        VStack{
+            VStack (alignment:.center){
+                if let imageUrlString = item.images?.large, let imageUrl = URL(string: imageUrlString) {
+                    AsyncImage(url: imageUrl) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView() // Placeholder while the image is loading
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 170)
+                                .cornerRadius(6)
+                        case .failure:
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 170)
+                                .cornerRadius(6)
+                        @unknown default:
+                            EmptyView()
+                        }
                     }
                 }
             }
-            
-            Text(item.name!) // Use the name from Datum
-                .font(.system(size: 16))
-                .fontWeight(.bold)
-                .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                .multilineTextAlignment(.leading)
-                .lineLimit(3) // Allows up to 3 lines, adjust as needed
-                .fixedSize(horizontal: false, vertical: true) // Expands vertically, not horizontally
+            VStack(alignment:.leading){
+                Text(item.name!) // Use the name from Datum
+                    .font(.system(size: 16))
+                    .fontWeight(.bold)
+                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(3) // Allows up to 3 lines, adjust as needed
+                    .fixedSize(horizontal: false, vertical: true) // Expands vertically, not horizontally
+            }
             
             Spacer()
             
